@@ -1,21 +1,66 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no" />
+
+    <title>{% block title %}PartaCar!{% endblock %}</title> {% block stylesheets %}
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons"
+              rel="stylesheet">
+
 
         <!-- Compiled and minified CSS -->
-        <link rel="stylesheet" href="{{ asset('framework/css/materialize.min.css')}}">
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
-    <footer>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-        <script type="text/javascript" src="{{ asset('framework/js/navbar.js') }}"></script>
-    </footer>
+        <link rel="stylesheet"
+              href="{{ asset('framework/css/materialize.min.css')}}">
+        <link rel="stylesheet"
+              href="{{ asset('framework/css/MyCss.css')}}">
+    {% endblock %}
+
+
+</head>
+<body>
+<nav role="navigation" style="background-color: #26a69a;">
+    <div class="nav-wrapper container">
+
+
+        <ul class="right hide-on-med-and-down">
+            <li><a href="{{ path('home') }}">Homepage</a></li>
+            <li><a href="{{ path('register') }}">Register</a></li>
+        </ul>
+        <a href="#" data-activates="slide-out" class="btn button-collapse"
+           style="display: flex;"><i class="material-icons">menu</i></a>
+
+        <ul id="slide-out" class="side-nav">
+            <li><div class="userView">
+                    <div class="background">
+                        <img
+                                src="{{ asset('framework/images/background1.jpg') }}">
+                    </div>
+                    <a href="#!user"><img class="circle"
+                                          src="{{ asset('framework/images/background1.jpg') }}"></a>
+                    <a href="#!name"><span class="white-text name">Guest
+								session</span></a> <a href="#!email"><span class="white-text email">test.test@gmail.com</span></a>
+                </div></li>
+            <li><a href="https://www.facebook.com/ISEN.Toulon/?fref=ts"><i class="material-icons">thumb_up</i>ISEN-Toulon Facebook</a></li>
+            <li><a href="http://www.isen.fr/campus/toulon/"><i class="material-icons">info</i>ISEN-Toulon website</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Subheader</a></li>
+            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+        </ul>
+    </div>
+</nav>
+{% block body %} {% endblock %} {% block javascripts %}
+
+    <script type="text/javascript"
+            src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    <script type="text/javascript" src="{{ asset('framework/js/navbar.js') }}"></script>
+
+
+{% endblock %}
+</body>
 </html>
+
+
