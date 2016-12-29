@@ -52,21 +52,21 @@ class Mooring
     /**
      * @var string
      *
-     * @ORM\Column(name="bateauTitu", type="string", length=255, unique=true)
+     * @ORM\OneToOne(targetEntity="Boat")
      */
     private $bateauTitu;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="etat", type="string", length="255")
+     * @ORM\Column(name="etat", type="string", length=255)
      */
     private $etat;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="bateauAmarre", type="string", length=255)
+     * @ORM\OneToOne(targetEntity="Boat")
      */
     private $bateauAmarre;
 

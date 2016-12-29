@@ -12,26 +12,21 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User
 {
+
     /**
      * @var int
      *
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
-     * @var string
      *
      * @ORM\Column(name="mail", type="string", length=255, unique=true)
+     *
      */
     private $mail;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="mdp", type="string", length=255, unique=true)
+     * @ORM\Column(name="mdp", type="string", length=255)
      */
     private $mdp;
 

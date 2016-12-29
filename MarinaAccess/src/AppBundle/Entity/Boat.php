@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity\Entity;
+namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -57,10 +57,10 @@ class Boat
      */
     private $largeur;
 
+//@ORM\Column(name="capitaine", type="string", length=255)
     /**
-     * @var string
-     *
-     * @ORM\Column(name="capitaine", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="capitaine_mail", referencedColumnName="mail")
      */
     private $capitaine;
 
