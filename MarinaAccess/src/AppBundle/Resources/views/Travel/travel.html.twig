@@ -1,0 +1,42 @@
+{% extends 'baseConnect.html.twig' %}
+
+{% block body %}
+
+
+	<div class="section no-pad-bot">
+		<div class="container">
+			<br> <br>
+			<h1 class="header center teal-text text-lighten-2">PartaCar</h1>
+			<div class="row center">
+				<h5 class="header col s12 light">Bienvenue {{ user.mail }}!</h5>
+			</div>
+{% for items in travel %}
+		 <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card-panel grey lighten-5 z-depth-1">
+          <div class="row valign-wrapper">
+            <div class="col s2">
+
+                <a href="">Mr. {{ items.bateauAmarre.capitaine.lastName }} <img border="0" alt="No picture"  src="{{ items.bateauAmarre.capitaine.photo }}" width="70" height="70" class="circle">
+                <!-- notice the "circle" class -->
+                 </a>
+            </div>
+            <div class="col s10">
+              <span class="black-text">
+                {{ items.bateauTitu.capitaine.place }}
+              </span>
+                <a class='btn ButtonDrop' href='/travel/{{ items.id }}' data-activates='dropdown1'>C'est parti! <i class="material-icons">directions_car</i></a>
+
+			
+			</div>
+              
+            </div>
+          </div>
+        </div>
+
+    {% endfor %}
+      </div>
+				
+
+
+		</div>
+	{% endblock %}

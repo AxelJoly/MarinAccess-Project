@@ -59,9 +59,13 @@ class Boat
 
 //@ORM\Column(name="capitaine", type="string", length=255)
     /**
+     *
+     * @var string
+     *
      * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="capitaine_mail", referencedColumnName="mail")
      */
+
     private $capitaine;
 
     /**
@@ -71,19 +75,7 @@ class Boat
      */
     private $tirantEau;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateOccupation", type="datetime")
-     */
-    private $dateOccupation;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateLiberation", type="datetime")
-     */
-    private $dateLiberation;
 
 
     /**
@@ -288,52 +280,6 @@ class Boat
         return $this->tirantEau;
     }
 
-    /**
-     * Set dateOccupation
-     *
-     * @param \DateTime $dateOccupation
-     *
-     * @return Boat
-     */
-    public function setDateOccupation($dateOccupation)
-    {
-        $this->dateOccupation = $dateOccupation;
 
-        return $this;
-    }
-
-    /**
-     * Get dateOccupation
-     *
-     * @return \DateTime
-     */
-    public function getDateOccupation()
-    {
-        return $this->dateOccupation;
-    }
-
-    /**
-     * Set dateLiberation
-     *
-     * @param \DateTime $dateLiberation
-     *
-     * @return Boat
-     */
-    public function setDateLiberation($dateLiberation)
-    {
-        $this->dateLiberation = $dateLiberation;
-
-        return $this;
-    }
-
-    /**
-     * Get dateLiberation
-     *
-     * @return \DateTime
-     */
-    public function getDateLiberation()
-    {
-        return $this->dateLiberation;
-    }
 }
 

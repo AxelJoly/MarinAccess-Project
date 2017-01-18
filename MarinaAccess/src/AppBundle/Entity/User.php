@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * User
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User implements UserInterface
 {
 
     /**
@@ -35,6 +36,26 @@ class User
      *
      * @ORM\Column(name="numPermis", type="string", length=255, unique=true)
      */
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="firstName", type="string", length=255)
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lastName", type="string", length=255)
+     */
+    private $lastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="numPermis", type="string", length=255)
+     */
     private $numPermis;
 
     /**
@@ -58,6 +79,19 @@ class User
      */
     private $numUrgence;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="place", type="string", length=5)
+     */
+    private $place;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="roles", type="json_array", nullable=true)
+     */
+    private $roles;
 
     /**
      * Get id
@@ -105,6 +139,16 @@ class User
         $this->mdp = $mdp;
 
         return $this;
+    }
+
+    /**
+     * Get mdp
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->mdp;
     }
 
     /**
@@ -212,5 +256,79 @@ class User
     {
         return $this->numUrgence;
     }
+
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * Get roles
+     *
+     * @return array
+     */
+    public function getRoles()
+    {
+        return $this->roles;
+    }
+
+    public function getSalt()
+    {
+        return null;
+    }
+
+    public function eraseCredentials()
+    {
+    }
+
+    public function getUsername()
+    {
+        return $this->mail;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string $firstName
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string $lastName
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+    }
+
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    public function setPlace($place)
+    {
+        $this->place = $place;
+    }
+
 }
 

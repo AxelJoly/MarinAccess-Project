@@ -70,6 +70,20 @@ class Mooring
      */
     private $bateauAmarre;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateOccupation", type="datetime")
+     */
+    private $dateOccupation;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateLiberation", type="datetime")
+     */
+    private $dateLiberation;
+
 
     /**
      * Get id
@@ -247,6 +261,54 @@ class Mooring
     public function getBateauAmarre()
     {
         return $this->bateauAmarre;
+    }
+
+    /**
+     * Set dateOccupation
+     *
+     * @param \DateTime $dateOccupation
+     *
+     * @return Boat
+     */
+    public function setDateOccupation($dateOccupation)
+    {
+        $this->dateOccupation = $dateOccupation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateOccupation
+     *
+     * @return \DateTime
+     */
+    public function getDateOccupation()
+    {
+        return $this->dateOccupation;
+    }
+
+    /**
+     * Set dateLiberation
+     *
+     * @param \DateTime $dateLiberation
+     *
+     * @return Boat
+     */
+    public function setDateLiberation($dateLiberation)
+    {
+        $this->dateLiberation = $dateLiberation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateLiberation
+     *
+     * @return \DateTime
+     */
+    public function getDateLiberation()
+    {
+        return $this->dateLiberation;
     }
 }
 

@@ -16,21 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 class UserController extends Controller
 {
 
-    /**
-     * @Route("/", name="home")
-     */
-    public function indexAction()
-    {
-        return $this->render('AppBundle:Default:index.html.twig', array());
-    }
 
-    /**
-     * @Route("/register", name="register")
-     */
-    public function registerAction()
-    {
-        return $this->render('AppBundle:Register:register.html.twig', array(
 
-        ));
-    }
+
 }
