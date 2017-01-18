@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use AppBundle\Entity\Mooring;
 
 /**
  * User
@@ -79,12 +80,19 @@ class User implements UserInterface
      */
     private $numUrgence;
 
+
     /**
-     * @var string
      *
-     * @ORM\Column(name="place", type="string", length=5)
+     * @ORM\OneToMany(targetEntity="Mooring", mappedBy="proprietaire")
      */
-    private $place;
+
+    private $mooring;
+    /**
+    * @ORM\ManyToOne(targetEntity="Boat")
+    * @ORM\JoinColumn(name="bateau_id", referencedColumnName="id")
+    */
+
+    private $bateau;
 
     /**
      * @var array
@@ -329,6 +337,40 @@ class User implements UserInterface
     {
         $this->place = $place;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMooring()
+    {
+        return $this->mooring;
+    }
+
+    /**
+     * @param mixed $mooring
+     */
+    public function setMooring($mooring)
+    {
+        $this->mooring = $mooring;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBateau()
+    {
+        return $this->bateau;
+    }
+
+    /**
+     * @param mixed $bateau
+     */
+    public function setBateau($bateau)
+    {
+        $this->bateau = $bateau;
+    }
+
+
 
 }
 

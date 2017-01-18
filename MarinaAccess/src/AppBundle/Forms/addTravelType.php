@@ -18,7 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Entity\City;
 use Symfony\Component\Form\AbstractType;
-use AppBundle\Entity\Travel;
+use AppBundle\Entity\Mooring;
 use Doctrine\ORM\EntityManager;
 
 
@@ -42,17 +42,11 @@ class addTravelType extends AbstractType
                 'label' => "Date de libération",
             ))
 
-            ->add('end', EntityType::class, array(
-                'class' => 'AppBundle:Boat',
-                'choice_label' => 'name',
-                'attr' => ['class' => 'browser-default']
-            ))
-
             ->add('valider', SubmitType::class, array('label' => 'Proposer le trajet', 'attr' => ['class' => 'btn waves-effect waves-light']))->getForm();
     }
 
         public function	configureOptions(OptionsResolver $resolver){
-        $resolver->setDefaults(array('travel_class' => Travel::class));
+        $resolver->setDefaults(array('travel_class' => Mooring::class));
     }
 
 

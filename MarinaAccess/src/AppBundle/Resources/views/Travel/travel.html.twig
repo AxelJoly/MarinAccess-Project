@@ -16,18 +16,38 @@
           <div class="row valign-wrapper">
             <div class="col s2">
 
-                <a href="">Mr. {{ items.bateauAmarre.capitaine.lastName }} <img border="0" alt="No picture"  src="{{ items.bateauAmarre.capitaine.photo }}" width="70" height="70" class="circle">
+
+
+                <a href="">Mr. {{ items.proprietaire.lastName }} <img border="0" alt="No picture"  src="{{ items.proprietaire.photo }}" width="70" height="70" class="circle">
                 <!-- notice the "circle" class -->
                  </a>
+
             </div>
             <div class="col s10">
               <span class="black-text">
-                {{ items.bateauTitu.capitaine.place }}
+                {{ items.place }}
               </span>
-                <a class='btn ButtonDrop' href='/travel/{{ items.id }}' data-activates='dropdown1'>C'est parti! <i class="material-icons">directions_car</i></a>
+            </div>
 
+              <div class="col s12">
+              <span class="black-text">
+                {{ items.etat }}
+              </span>
+              </div>
+            {% if items.bateauAmarre != null %}
+              <div class="col s13">
+              <span class="black-text">
+               Mr. {{ items.bateauAmarre.capitaine.lastName }}
+              </span>
+              </div>
+            {% endif %}
+             {% if items.bateauAmarre == null %}
+                 <div class="col s14">
+                <a class='btn ButtonDrop' href='/travel/{{ items.id }}' data-activates='dropdown1'>Go!<i class="material-icons">directions_car</i></a>
+                 </div>
+            {% endif %}
 			
-			</div>
+
               
             </div>
           </div>

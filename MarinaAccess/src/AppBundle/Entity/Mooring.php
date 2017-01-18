@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\User;
 
 /**
  * Mooring
@@ -21,12 +22,6 @@ class Mooring
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="numPlace", type="string", length=255, unique=true)
-     */
-    private $numPlace;
 
     /**
      * @var float
@@ -49,12 +44,7 @@ class Mooring
      */
     private $tirantEauMax;
 
-    /**
-     * @var string
-     *
-     * @ORM\OneToOne(targetEntity="Boat")
-     */
-    private $bateauTitu;
+
 
     /**
      * @var string
@@ -67,6 +57,7 @@ class Mooring
      * @var string
      *
      * @ORM\OneToOne(targetEntity="Boat")
+     *
      */
     private $bateauAmarre;
 
@@ -83,6 +74,23 @@ class Mooring
      * @ORM\Column(name="dateLiberation", type="datetime")
      */
     private $dateLiberation;
+
+    /**
+     *
+     * @var string
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="mooring")
+     * @ORM\JoinColumn(name="proprietaire_mail", referencedColumnName="mail")
+     */
+    private $proprietaire;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="place", type="string", length=5)
+     */
+    private $place;
 
 
     /**
@@ -310,5 +318,33 @@ class Mooring
     {
         return $this->dateLiberation;
     }
+
+    /**
+     * @return string
+     */
+    public function getProprietaire()
+    {
+        return $this->proprietaire;
+    }
+
+    /**
+     * @param string $proprietaire
+     */
+    public function setProprietaire($proprietaire)
+    {
+        $this->proprietaire = $proprietaire;
+    }
+
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    public function setPlace($place)
+    {
+        $this->place = $place;
+    }
+
+
 }
 

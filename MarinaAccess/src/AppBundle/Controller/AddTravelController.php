@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Forms\addTravelType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -28,10 +29,18 @@ class AddTravelController extends Controller
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
 
         }
+       /* $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('SELECT id FROM AppBundle\Entity\Mooring id WHERE id.bateauTitu.capitaine.mail = :mail');
+        $query->setParameters(array(
+            'mail' => $user->getMail(),
+        ));
+        $check = $query->getResult();
 
-        $travel = new Mooring();
+*/
+        $travel = $this->getDoctrine()->getRepository('AppBundle:Mooring')->find($user->getMail());
 
-        $form = $this->createForm(RegisterType::class, $user);
+
+        $form = $this->createForm(addTravelType::class, $travel);
 
         $form->handleRequest($request);
 
@@ -44,6 +53,6 @@ class AddTravelController extends Controller
             return $this->redirectToRoute('home', array('user' => $user, 'travel' => $travel));
         }
 
-        return $this->render('AppBundle:Travel:travelform.html.twig', array('city' => $city, 'user' => $user, 'form' => $form->createView()));
+        return $this->render('AppBundle:Travel:travelform.html.twig', array('user' => $user, 'form' => $form->createView()));
     }
 }

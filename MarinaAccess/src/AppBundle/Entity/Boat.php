@@ -57,7 +57,7 @@ class Boat
      */
     private $largeur;
 
-//@ORM\Column(name="capitaine", type="string", length=255)
+
     /**
      *
      * @var string
