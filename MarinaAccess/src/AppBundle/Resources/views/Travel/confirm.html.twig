@@ -1,0 +1,50 @@
+{% extends 'baseConnect.html.twig' %}
+{% block body %}
+
+    <h1 class="header center teal-text text-lighten-2">MarinAccess</h1>
+    <div class="row center">
+
+    </div>
+
+    <div class="row center">
+
+        <div class="container z-depth-5">
+            <ul class="collection">
+
+                <div class="row">
+
+                    <div class="container containerImg">
+                        <img src=""
+                             class="image" style="width: 100%">
+
+                    </div>
+                </div>
+
+
+                <h5 class="header col s12 light">Confirmer votre arrivée?</h5>
+            <div class="container">
+                <div class="row">
+                    <div class="input-field col s6 ">
+                        <a class='btn' href='{{ path('home') }}'>Annuler <i class="material-icons">thumb_down</i></a>
+                    </div>
+                    <div class="input-field col s6 ">
+                        <a class='btn' href='/confirmed/{{ mooring.id }}'>Confirmer <i class="material-icons">thumb_up</i></a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            </ul>
+
+
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}

@@ -37,20 +37,27 @@ class AddTravelController extends Controller
         $check = $query->getResult();
 
 */
-        $travel = $this->getDoctrine()->getRepository('AppBundle:Mooring')->find($user->getMail());
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('SELECT mooring FROM AppBundle\Entity\Mooring mooring WHERE mooring.place = :place');
+        $query->setParameters(array(
+            'place' => $user->getEmplacement(),
+        ));
+        $check = $query->getResult();
+        dump($check);
 
+        $mooring = $check[0];
 
-        $form = $this->createForm(addTravelType::class, $travel);
+        $form = $this->createForm(addTravelType::class, $mooring);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
+            $mooring->setEtat("Libre");
             $em = $this->getDoctrine()->getManager();
-            $em->persist($travel);
+            $em->persist($mooring);
             $em->flush();
-            $travel = $this->getDoctrine()->getRepository('AppBundle:Travel')->findAll();
-            return $this->redirectToRoute('home', array('user' => $user, 'travel' => $travel));
+          //  $travel = $this->getDoctrine()->getRepository('AppBundle:Travel')->findAll();
+            return $this->redirectToRoute('home', array('user' => $user));
         }
 
         return $this->render('AppBundle:Travel:travelform.html.twig', array('user' => $user, 'form' => $form->createView()));

@@ -25,7 +25,7 @@
             </div>
             <div class="col s10">
               <span class="black-text">
-                {{ items.place }}
+               Emplacement {{ items.place.numPlace }}
               </span>
             </div>
 
@@ -37,13 +37,13 @@
             {% if items.bateauAmarre != null %}
               <div class="col s13">
               <span class="black-text">
-               Mr. {{ items.bateauAmarre.capitaine.lastName }}
+               Capitaine {{ items.bateauAmarre.capitaine.lastName }}
               </span>
               </div>
             {% endif %}
-             {% if items.bateauAmarre == null %}
+             {% if items.etat == "Libre" %}
                  <div class="col s14">
-                <a class='btn ButtonDrop' href='/travel/{{ items.id }}' data-activates='dropdown1'>Go!<i class="material-icons">directions_car</i></a>
+                <a class='btn ButtonDrop' href='/confirm/{{ items.id }}' data-activates='dropdown1'>Go!<i class="material-icons">directions_car</i></a>
                  </div>
             {% endif %}
 			

@@ -84,11 +84,11 @@ class Mooring
      */
     private $proprietaire;
 
-
+// @ORM\Column(name="place", type="string", length=5)
     /**
      * @var string
      *
-     * @ORM\Column(name="place", type="string", length=5)
+     * @ORM\OneToOne(targetEntity="Seat")
      */
     private $place;
 

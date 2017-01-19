@@ -21,6 +21,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\AbstractType;
 use AppBundle\Entity\User;
+use Doctrine\ORM\EntityRepository;
 
 
 class RegisterType extends AbstractType
@@ -36,9 +37,20 @@ class RegisterType extends AbstractType
             ->add('numPermis',TextType::class)
             ->add('nationalite',TextType::class)
             ->add('numUrgence', TextType::class)
+            ->add('emplacement', EntityType::class, array(
+                'class' => 'AppBundle:Seat',
+                'choice_label' => 'numPlace',
+                'label' => 'Vous possedez une place? Ajoutez la!',
+                'attr' => ['class' => 'browser-default'],
+
+
+
+
+            ))
             ->add('photo',  FileType::class, array(
             		'required' => false, 'label' => 'Photo de profil  ',
-            		'attr' => ['class' => 'btn waves-effect waves-light ']
+                     'label' => 'Photo de profil obligatoire',
+
             		
             ))
             ->add('save', SubmitType::class, array(

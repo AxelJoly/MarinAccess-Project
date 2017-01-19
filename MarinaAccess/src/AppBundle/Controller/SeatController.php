@@ -11,6 +11,7 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class SeatController extends Controller
 {
@@ -28,9 +29,76 @@ class SeatController extends Controller
 
         }
 
+
         $seat = $this->getDoctrine()->getRepository('AppBundle:Mooring')->findAll();
+        $date = new \DateTime();
 
 
-        return $this->render('AppBundle:Travel:travel.html.twig', array('user' => $user, 'travel' => $seat));
+        $em = $this->getDoctrine()->getManager();
+        dump($date);
+        for($i = 0; $i < count($seat); $i++){
+            $state = $seat[$i]->getDateLiberation() < $date;
+            dump($seat[$i]->getDateLiberation());
+
+            if ($state == true){
+
+
+                $seat[$i]->setEtat("En attente");
+                $seat[$i]->setDateOccupation(null);
+                $seat[$i]->setDateOccupation(null);
+                $seat[$i]->setBateauAmarre(null);
+                $em->persist($seat[$i]);
+                $em->flush();
+            }
+         }
+        $mooring = $this->getDoctrine()->getRepository('AppBundle:Mooring')->findAll();
+
+
+        return $this->render('AppBundle:Travel:travel.html.twig', array('user' => $user, 'travel' => $mooring));
+    }
+
+    /**
+     * @Route("/confirm/{id}", name="confirm")
+     *
+     */
+    public function confirmAction($id)
+    {
+        if( $this->container->get( 'security.authorization_checker' )->isGranted( 'IS_AUTHENTICATED_FULLY' ) )
+        {
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+        }
+
+        $mooring = $this->getDoctrine()->getRepository('AppBundle:Mooring')->find($id);
+        return $this->render('AppBundle:Travel:confirm.html.twig', array('user' => $user, 'mooring' => $mooring));
+    }
+
+    /**
+     * @Route("/confirmed/{id}", name="confirmed")
+     *
+     */
+    public function confirmedAction($id)
+    {
+        if( $this->container->get( 'security.authorization_checker' )->isGranted( 'IS_AUTHENTICATED_FULLY' ) )
+        {
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+        }
+        $em = $this->getDoctrine()->getManager();
+        $mooring = $this->getDoctrine()->getRepository('AppBundle:Mooring')->find($id);
+        $query = $em->createQuery('SELECT bateau FROM AppBundle\Entity\Boat bateau WHERE bateau.capitaine = :capitaine');
+        $query->setParameters(array(
+            'capitaine' => $user,
+        ));
+        $check = $query->getResult();
+        dump($check);
+
+        $mooring->setBateauAmarre($check[0]);
+        $mooring->setEtat("Occupé");
+
+        $em->persist($mooring);
+        $em->flush();
+
+        return $this->redirectToRoute('home');
     }
 }

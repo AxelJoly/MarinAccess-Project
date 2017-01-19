@@ -62,7 +62,7 @@ class Boat
      *
      * @var string
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="bateau")
      * @ORM\JoinColumn(name="capitaine_mail", referencedColumnName="mail")
      */
 

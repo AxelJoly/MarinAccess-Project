@@ -9,6 +9,7 @@
 namespace AppBundle\Forms;
 
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -41,6 +42,7 @@ class addTravelType extends AbstractType
                 'time_widget' => "single_text",
                 'label' => "Date de libération",
             ))
+
 
             ->add('valider', SubmitType::class, array('label' => 'Proposer le trajet', 'attr' => ['class' => 'btn waves-effect waves-light']))->getForm();
     }

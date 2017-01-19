@@ -88,11 +88,18 @@ class User implements UserInterface
 
     private $mooring;
     /**
-    * @ORM\ManyToOne(targetEntity="Boat")
-    * @ORM\JoinColumn(name="bateau_id", referencedColumnName="id")
-    */
+     * @ORM\OneToMany(targetEntity="Boat", mappedBy="capitaine")
+     */
 
     private $bateau;
+
+
+    /**
+     * @var string
+     *
+     * @ORM\OneToOne(targetEntity="Seat")
+     */
+    private $emplacement;
 
     /**
      * @var array
@@ -368,6 +375,22 @@ class User implements UserInterface
     public function setBateau($bateau)
     {
         $this->bateau = $bateau;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmplacement()
+    {
+        return $this->emplacement;
+    }
+
+    /**
+     * @param string $emplacement
+     */
+    public function setEmplacement($emplacement)
+    {
+        $this->emplacement = $emplacement;
     }
 
 
