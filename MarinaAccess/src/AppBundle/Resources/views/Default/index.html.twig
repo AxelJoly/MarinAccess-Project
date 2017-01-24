@@ -3,23 +3,22 @@
 
 	<div id="index-banner" class="parallax-container">
 		<div class="section no-pad-bot">
-			<div class="container transboxTest">
 				<br>
-				<h1 class="header center teal-text text-lighten-2">PartaCar</h1>
+				<h1 class="header center white-text text-lighten-2 ">MarinAccess</h1>
 
 
 				<div class="row center">
 					<div class="row">
 						<form action="{{ path('app.login') }}" method="post" class="form-horizontal">
 							{% if error %}
-								<div><h4 class="header center teal-text">{{ error.messageKey|trans(error.messageData, 'security') }}</h4></div>
+								<div><h4 class="header center teal-text text-lighten-2">{{ error.messageKey|trans(error.messageData, 'security') }}</h4></div>
 							{% endif %}
 							<div class="container">
 								<div class="row">
 									<div class="col s12 offset-s2">
-										<div class="input-field col s8	">
-											<input id="mail" type="text" class="validate" name="_username" value="{{ last_username }}"/>
-											<label for="mail">Mail</label>
+										<div class="input-field col s8" >
+											<input id="mail" type="text" class="validate" name="_username" value="{{ last_username }}" />
+											<label for="mail" style="color: #ffffff; border-bottom-color: #ffffff">Mail </label>
 										</div>
 									</div>
 								</div>
@@ -27,12 +26,12 @@
 									<div class="col s12 offset-s2">
 										<div class="input-field col s8">
 											<input name="_password" id="password" class="validate" type="password" />
-											<label for="password">Password</label>
+											<label for="password" style="color: #ffffff; border-bottom-color: #ffffff">Password</label>
 										</div>
 									</div>
 								</div>
 
-								<button class="btn waves-effect waves-light" type="submit"
+								<button class="btn waves-effect waves-light blue lighten-1" type="submit"
 										name="action">
 									LOGIN <i class="material-icons right">send</i>
 								</button>
@@ -44,11 +43,9 @@
 					</div>
 
 				</div>
-
-			</div>
 		</div>
 		<div class="parallax">
-			<img src="{{ asset('framework/images/background1.jpg') }}" alt="Unsplashed background img 1" style="display: block;transform: translate3d(-50%, 50px, 0px);">
+			<img src="http://www.beachwallpaperhd.com/wp-content/uploads/Summer%20Beach/Resort%20and%20Yacht%20Harbor%20Wallpapers.jpg" alt="Unsplashed background img 1" style="display: block;transform: translate3d(-50%, 50px,">
 		</div>
 	</div>
 
@@ -116,7 +113,7 @@
 			</div>
 		</div>
 		<div class="parallax">
-			<img  src="{{ asset('framework/images/background2.jpg') }}" alt="Unsplashed background img 2" style="display: block; transform: translate3d(-50%, 100px, 0px);">
+			<img  src="http://www.beachwallpaperhd.com/wp-content/uploads/Summer%20Beach/Summer%20clear%20waters%20of%20the%20harbor%20Wallpapers.jpg" alt="Unsplashed background img 2" style="display: block; transform: translate3d(-50%, 100px, 0px);">
 		</div>
 	</div>
 
@@ -157,11 +154,11 @@
 			</div>
 		</div>
 		<div class="parallax">
-			<img  src="{{ asset('framework/images/background3.jpg') }}" alt="Unsplashed background img 3" style="display: flex; transform: translate3d(-50%, 50px, 0px);">
+			<img  src="https://naturehdwallpapers.files.wordpress.com/2013/11/monaco-port-wallpaper.jpg" alt="Unsplashed background img 3" style="display: flex; transform: translate3d(-50%, 50px, 0px);">
 		</div>
 	</div>
 
-	<footer class="page-footer teal" style="margin-top:0px;">
+	<footer class="page-footer blue" style="margin-top:0px;">
 		<div class="container">
 			<div class="row">
 				<div class="col l6 s12">

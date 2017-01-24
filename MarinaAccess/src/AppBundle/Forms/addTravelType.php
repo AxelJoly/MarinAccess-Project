@@ -44,7 +44,7 @@ class addTravelType extends AbstractType
             ))
 
 
-            ->add('valider', SubmitType::class, array('label' => 'Proposer le trajet', 'attr' => ['class' => 'btn waves-effect waves-light']))->getForm();
+            ->add('valider', SubmitType::class, array('label' => 'Proposer le trajet', 'attr' => ['class' => 'btn waves-effect waves-light blue lighten-1 ']))->getForm();
     }
 
         public function	configureOptions(OptionsResolver $resolver){

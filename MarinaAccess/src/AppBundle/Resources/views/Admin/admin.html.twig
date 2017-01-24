@@ -1,0 +1,85 @@
+{% extends 'baseConnect.html.twig' %}
+{% block body %}
+
+    <h1 class="header center blue-text text-lighten-2">MarinAccess</h1>
+    <div class="row center">
+
+    </div>
+
+    <div class="row center">
+
+        <div class="container z-depth-5">
+            <ul class="collection">
+
+                <div class="row">
+
+                    <div class="container containerImg">
+                        <img src=""
+                             class="image" style="width: 100%">
+
+                    </div>
+                </div>
+
+
+                <h5 class="header col s12 light">Liste des users</h5>
+                <div class="">
+                    <table class="highlight, centered, striped">
+                        <thead>
+                        <tr>
+                            <th data-field="photo">Photo</th>
+                            <th data-field="id">Mail</th>
+                            <th data-field="firstName">Prénom</th>
+                            <th data-field="lastName">Nom</th>
+                            <th data-field="numPermis">Numero de permis</th>
+
+                            <th data-field="nationalite">Nationalité</th>
+                            <th data-field="numUrgence">Numero d'urgence</th>
+
+                            <th data-field="emplacement">Place</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for items in users %}
+
+                            <tr>
+                                <td><img class="circle" src="{{ items.photo }}" width="50" height="50"></td>
+                                <td>{{ items.mail }}</td>
+                                <td>{{ items.firstName }}</td>
+                                <td>{{ items.lastName}}</td>
+                                <td>{{ items.numPermis}}</td>
+
+                                <td>{{ items.nationalite}}</td>
+
+                                <td>{{ items.numUrgence}}</td>
+                            {% if items.emplacement.numPlace is defined %}
+                                <td>{{ items.emplacement.numPlace }}</td>
+                            {% else %}
+                                <td>Non définie</td>
+                                {% endif %}
+                                <td><a class='btn ButtonDrop blue' href='/modify/{{ items.mail }}' data-activates='dropdown1'>Modifier</a></td>
+                                <td> <a class='btn ButtonDrop #f44336 red ' href='/delete/{{ items.mail }}' data-activates='dropdown1'>Supprimer</a></td>
+
+
+                            </tr>
+
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+
+            </ul>
+
+
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}

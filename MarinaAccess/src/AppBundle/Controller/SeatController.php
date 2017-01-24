@@ -35,10 +35,10 @@ class SeatController extends Controller
 
 
         $em = $this->getDoctrine()->getManager();
-        dump($date);
+
         for($i = 0; $i < count($seat); $i++){
             $state = $seat[$i]->getDateLiberation() < $date;
-            dump($seat[$i]->getDateLiberation());
+
 
             if ($state == true){
 
@@ -91,7 +91,7 @@ class SeatController extends Controller
             'capitaine' => $user,
         ));
         $check = $query->getResult();
-        dump($check);
+
 
         $mooring->setBateauAmarre($check[0]);
         $mooring->setEtat("Occupé");

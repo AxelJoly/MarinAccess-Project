@@ -21,7 +21,7 @@
 
 </head>
 <body>
-<nav role="navigation" style="background-color: #26a69a;">
+<nav role="navigation" style="background-color: #42a5f5;">
     <div class="nav-wrapper container">
 
 
@@ -29,7 +29,8 @@
             <li><a href="{{ path('home') }}">Homepage</a></li>
             <li><a href="{{ path('register') }}">Register</a></li>
         </ul>
-        <a href="#" data-activates="slide-out" class="btn button-collapse"
+
+        <a href="#" data-activates="slide-out" class="blue lighten-1 button-collapse top-nav full hide-on-large-only"
            style="display: flex;"><i class="material-icons">menu</i></a>
 
         <ul id="slide-out" class="side-nav">
@@ -43,11 +44,10 @@
                     <a href="#!name"><span class="white-text name">Guest
 								session</span></a> <a href="#!email"><span class="white-text email">test.test@gmail.com</span></a>
                 </div></li>
-            <li><a href="https://www.facebook.com/ISEN.Toulon/?fref=ts"><i class="material-icons">thumb_up</i>ISEN-Toulon Facebook</a></li>
-            <li><a href="http://www.isen.fr/campus/toulon/"><i class="material-icons">info</i>ISEN-Toulon website</a></li>
+            <li><a href="{{ path('home') }}"><i class="material-icons">home</i>Homepage</a></li>
+            <li><a href="{{ path('register') }}"><i class="material-icons">mode_edit</i>Register</a></li>
             <li><div class="divider"></div></li>
-            <li><a class="subheader">Subheader</a></li>
-            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+
         </ul>
     </div>
 </nav>

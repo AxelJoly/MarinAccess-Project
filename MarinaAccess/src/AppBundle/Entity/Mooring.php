@@ -64,14 +64,14 @@ class Mooring
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateOccupation", type="datetime")
+     * @ORM\Column(name="dateOccupation", type="datetime", nullable = true)
      */
     private $dateOccupation;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="dateLiberation", type="datetime")
+     * @ORM\Column(name="dateLiberation", type="datetime", nullable = true)
      */
     private $dateLiberation;
 

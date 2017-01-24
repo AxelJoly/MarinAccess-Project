@@ -3,9 +3,10 @@
 /**
  * Created by PhpStorm.
  * User: axel
- * Date: 29/12/2016
- * Time: 19:17
+ * Date: 21/01/2017
+ * Time: 18:49
  */
+
 namespace AppBundle\Forms;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -23,54 +24,31 @@ use Symfony\Component\Form\AbstractType;
 use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 
-
-class RegisterType extends AbstractType
+class ModifyType extends AbstractType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options){
 
         $builder
-            ->add('mail',EmailType::class, array(
-               'label' => 'Email ',
-            ))
-
-            ->add('mdp',PasswordType::class, array(
-                'label' => 'Mot de passe ',
-            ))
             ->add('firstName',TextType::class, array(
-                'label' => 'Prénom',
-            ))
+                'required' => false,))
             ->add('lastName',TextType::class, array(
-                'label' => 'Nom',
-            ))
+                'required' => false,))
             ->add('numPermis',TextType::class, array(
-                'label' => 'Numéro de permis',
-            ))
+                'required' => false,))
             ->add('nationalite',TextType::class, array(
-                'label' => 'Nationalité',
-            ))
+                'required' => false,))
             ->add('numUrgence', TextType::class, array(
-                'label' => "Numéro d'urgence",
-            ))
+                'required' => false,))
             ->add('emplacement', EntityType::class, array(
                 'class' => 'AppBundle:Seat',
                 'choice_label' => 'numPlace',
                 'label' => 'Vous possedez une place? Ajoutez la!',
                 'attr' => ['class' => 'browser-default'],
-                'required' => false,
-
-
-
-
             ))
-            ->add('photo',  FileType::class, array(
-            		'required' => false, 'label' => 'Photo de profil  ',
 
-
-            		
-            ))
             ->add('save', SubmitType::class, array(
-            		'attr' => ['class' => 'btn waves-effect waves-light blue lighten-1 center-align ']
+                'label' => 'Mettre a jour',
+                'attr' => ['class' => 'btn waves-effect waves-light center-align ']
             ));
     }
 

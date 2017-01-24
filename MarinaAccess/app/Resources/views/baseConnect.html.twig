@@ -22,16 +22,14 @@
 
 </head>
 <body>
-		<nav role="navigation" style="background-color: #26a69a;">
+		<nav role="navigation" style="background-color: #42a5f5;">
 		<div class="nav-wrapper container">
 
-			<ul class="right hide-on-med-and-down">
-				<li><a href="{{ path('home') }}">Homepage</a></li>
-			</ul>
-				
-			<a href="#" data-activates="slide-out" class="btn button-collapse"
-				style="display: flex;"><i class="material-icons">menu</i></a>
 
+			<div class="blue lighten-1">
+			<a href="#" data-activates="slide-out" class=" button-collapse blue lighten-1"
+				style="display: flex;"><i class="material-icons ">menu</i></a>
+			</div>
 			<ul id="slide-out" class="side-nav">
 				<li><div class="userView">
 						<div class="background">
@@ -44,12 +42,19 @@
 						<a href="#!email"><span class="white-text email">{{ user.mail }}</span></a>
 					</div></li>
 				<li><a href="{{ path('home') }}newTravelForm"><i class="material-icons">library_add</i>Add Travel</a></li>
-				<li><a href="#!"><i class="material-icons">navigation</i>My travels</a></li>
-				<li><a href="#!"><i class="material-icons">location_on</i>Search travels</a></li>
+				<li><a class="waves-effect " href="{{ path('app.logout') }}"><i class="material-icons">power_settings_new</i>Disconnect</a></li>
+				{% if user.roles == ["ROLE_ADMIN"] %}
+					<li><a class="subheader">Administration</a></li>
+				<li><a href="{{ path('home') }}admin"><i class="material-icons">settings</i>Panneau d'administration</a></li>
+				{% endif %}
+				<li><a href="{{ path('home') }}"><i class="material-icons">home</i>Homepage</a></li>
 				<!--<li><a href=""><i class="material-icons">verified_user</i>My profile</a></li>-->
-				<li><div class="divider"></div></li>
-				<li><a class="subheader">Subheader</a></li>
-				<li><a class="waves-effect" href="{{ path('app.logout') }}">Disconnect</a></li>
+
+
+
+			</ul>
+			<ul class="right hide-on-med-and-down">
+				<li><a href="{{ path('home') }}">Homepage</a></li>
 			</ul>
 		</div>
 	</nav>
