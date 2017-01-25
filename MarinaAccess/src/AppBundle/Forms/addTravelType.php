@@ -32,10 +32,11 @@ class addTravelType extends AbstractType
     {
 
         $builder
-            ->add('dateOccupation',DateTimeType::class, array(
+            ->add('dateOccupation', DateTimeType::class, array(
                 'date_widget' => "single_text",
                 'time_widget' => "single_text",
                 'label' => "Date d'occupation",
+
             ))
             ->add('dateLiberation',DateTimeType::class, array(
                 'date_widget' => "single_text",

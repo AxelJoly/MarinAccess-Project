@@ -42,21 +42,22 @@ class RegisterController extends Controller
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
+
+            if($user->getEmplacement() != null) {
+                $mooring = new Mooring();
+
+                $mooring->setPlace($user->getEmplacement());
+                $mooring->setLargeurMax('20');
+                $mooring->setLongueurMax('20');
+                $mooring->setTirantEauMax('5');
+                $mooring->setEtat('En attente');
+                $mooring->setProprietaire($user);
+                $mooring->setDateLiberation(new \DateTime());
+                $mooring->setDateOccupation(new \DateTime());
+
+                $em->persist($mooring);
+            }
             $em->flush();
-
-          /*  $mooring = new Mooring();
-
-            $mooring->setPlace($user->getEmplacement());
-            $mooring->setLargeurMax('20');
-            $mooring->setLongueurMax('20');
-            $mooring->setTirantEauMax('5');
-            $mooring->setEtat('En attente');
-            $mooring->setProprietaire($user);
-            $mooring->setDateLiberation(new \DateTime());
-            $mooring->setDateOccupation(new \DateTime());
-
-            $em->persist($mooring);
-            $em->flush(); */
 
             return $this->redirectToRoute('home');
         }

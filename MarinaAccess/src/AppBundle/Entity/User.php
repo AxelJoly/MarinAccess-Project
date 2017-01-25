@@ -83,12 +83,12 @@ class User implements UserInterface
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="Mooring", mappedBy="proprietaire")
+     * @ORM\OneToMany(targetEntity="Mooring", mappedBy="proprietaire", cascade={"persist", "remove"})
      */
 
     private $mooring;
     /**
-     * @ORM\OneToMany(targetEntity="Boat", mappedBy="capitaine")
+     * @ORM\OneToMany(targetEntity="Boat", mappedBy="capitaine", cascade={"persist", "remove"})
      */
 
     private $bateau;

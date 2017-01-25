@@ -19,13 +19,12 @@
           <div class="row valign-wrapper">
             <div class="col s2">
 
-
-
                 <a href="">Mr. {{ items.proprietaire.lastName }} <img border="0" alt="No picture"  src="{{ items.proprietaire.photo }}" width="70" height="70" class="circle">
                 <!-- notice the "circle" class -->
                  </a>
 
             </div>
+
             <div class="col s10">
               <span class="black-text">
                Emplacement {{ items.place.numPlace }}
@@ -44,17 +43,26 @@
               </span>
               </div>
             {% endif %}
-             {% if items.etat == "Libre" %}
+             {% if items.etat == "Libre" and items.proprietaire != user %}
+                 {% if user.bateau is defined %}
                  <div class="col s14">
                 <a class='btn waves-effect waves-light blue lighten-1' href='/confirm/{{ items.id }}' data-activates='dropdown1'>Go!<i class="material-icons">directions_car</i></a>
                  </div>
+                     {% else %}
+                         <div class="col s14">
+                             <h1 class="header col s12 light">Veuillez enregistrer un bateau.</h1>
+                         </div>
+                     {% endif %}
+                 
             {% endif %}
+
+          </div>
+        </div>
+         </div>
     {% endif %}
     {% endif %}
               
-            </div>
-          </div>
-        </div>
+
 
     {% endfor %}
       </div>

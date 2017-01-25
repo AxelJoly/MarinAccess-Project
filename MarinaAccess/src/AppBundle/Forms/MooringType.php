@@ -1,11 +1,11 @@
 <?php
-
 /**
  * Created by PhpStorm.
  * User: axel
- * Date: 29/12/2016
- * Time: 19:17
+ * Date: 24/01/2017
+ * Time: 19:44
  */
+
 namespace AppBundle\Forms;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -24,49 +24,34 @@ use AppBundle\Entity\User;
 use Doctrine\ORM\EntityRepository;
 
 
-class RegisterType extends AbstractType
+class MooringType extends AbstractType
 {
-
     public function buildForm(FormBuilderInterface $builder, array $options){
 
         $builder
-            ->add('mail',EmailType::class, array(
-               'label' => 'Email ',
-            ))
+            ->add('place', EntityType::class, array(
+                'class' => 'AppBundle:Seat',
+                'choice_label' => 'numPlace',
+                'label' => 'Emplacement',
+                'attr' => ['class' => 'browser-default'],
 
-            ->add('mdp',PasswordType::class, array(
-                'label' => 'Mot de passe ',
             ))
-            ->add('firstName',TextType::class, array(
-                'label' => 'Prénom',
-            ))
-            ->add('lastName',TextType::class, array(
-                'label' => 'Nom',
-            ))
-            ->add('numPermis',TextType::class, array(
-                'label' => 'Numéro de permis',
-            ))
-            ->add('nationalite',TextType::class, array(
-                'label' => 'Nationalité',
-            ))
-            ->add('numUrgence', TextType::class, array(
-                'label' => "Numéro d'urgence",
-            ))
+            ->add('longueurMax',TextType::class, array(
+                ))
+            ->add('largeurMax',TextType::class, array(
+                ))
+            ->add('tirantEauMax',TextType::class, array(
+                ))
 
-            ->add('photo',  TextType::class, array(
-            		'required' => false, 'label' => 'Photo de profil (URL) ',
-
-
-            		
-            ))
             ->add('save', SubmitType::class, array(
-            		'attr' => ['class' => 'btn waves-effect waves-light blue lighten-1 center-align ']
+                'label' => 'Mettre a jour',
+                'attr' => ['class' => 'btn waves-effect waves-light center-align ']
             ));
     }
-
 
     public function	configureOptions(OptionsResolver $resolver){
         $resolver->setDefaults(array('user_class' => User::class));
     }
+
 
 }

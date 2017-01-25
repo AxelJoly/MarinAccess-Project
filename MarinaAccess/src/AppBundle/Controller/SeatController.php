@@ -12,6 +12,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints\DateTime;
+use AppBundle\Forms\MooringType;
+use AppBundle\Entity\Mooring;
+use AppBundle\Entity\User;
 
 class SeatController extends Controller
 {
@@ -91,7 +94,7 @@ class SeatController extends Controller
             'capitaine' => $user,
         ));
         $check = $query->getResult();
-
+        dump($check);
 
         $mooring->setBateauAmarre($check[0]);
         $mooring->setEtat("Occupé");
@@ -100,5 +103,35 @@ class SeatController extends Controller
         $em->flush();
 
         return $this->redirectToRoute('home');
+    }
+
+    /**
+     * @Route("/mooring/", name="mooring")
+     *
+     */
+    public function modifyMooringAction(Request $request)
+    {
+        if( $this->container->get( 'security.authorization_checker' )->isGranted( 'IS_AUTHENTICATED_FULLY' ) )
+        {
+            $user = $this->container->get('security.token_storage')->getToken()->getUser();
+
+        }
+        $em = $this->getDoctrine()->getManager();
+        $mooring = new Mooring();
+
+        $form = $this->createForm(MooringType::class, $mooring);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $mooring->setEtat("En attente");
+            $mooring->setProprietaire($user);
+
+            $em->persist($mooring);
+            $user->setEmplacement($mooring->getPlace());
+            $em->flush();
+            return $this->redirectToRoute('home');
+        }
+        return $this->render('AppBundle:Travel:mooringModify.html.twig', array('user' => $user, 'form' => $form->createView()));
     }
 }

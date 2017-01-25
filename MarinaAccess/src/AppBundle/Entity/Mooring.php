@@ -87,7 +87,7 @@ class Mooring
 // @ORM\Column(name="place", type="string", length=5)
     /**
      * @var string
-     *
+
      * @ORM\OneToOne(targetEntity="Seat")
      */
     private $place;

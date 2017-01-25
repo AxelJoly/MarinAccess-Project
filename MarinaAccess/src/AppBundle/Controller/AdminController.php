@@ -99,9 +99,12 @@ class AdminController extends Controller
         $check = $query->getResult();
 
         dump($check);
+        $em = $this->getDoctrine()->getManager();
         $mooring = $check[0];
         $mooring->setProprietaire(null);
-        $em = $this->getDoctrine()->getManager();
+        $mooring->setBateauAmarre(null);
+        $em->persist($mooring);
+
         $em->remove($userToDelete);
         $em->flush();
 

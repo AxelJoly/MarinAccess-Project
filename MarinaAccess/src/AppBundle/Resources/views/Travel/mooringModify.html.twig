@@ -1,0 +1,28 @@
+{% extends "baseConnect.html.twig" %}
+{% block title %}Modifier les infos de votre emplacement{% endblock %}
+
+
+{% block body %}
+
+
+    <!--<form action="" method="post"> -->
+    <div class="container "><h1 class="test-align center">Modifier les infos de votre emplacement</h1></div>
+    <div class="container">
+        <div class="col s3 row">
+        </div>
+    </div>
+
+
+
+
+    {{ form_start(form, { 'attr': {'class': 'container'}}) }}
+
+
+
+    {{ form_widget(form)}}
+
+
+    {{ form_end(form) }}
+
+
+{% endblock %}
