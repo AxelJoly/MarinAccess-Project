@@ -16,7 +16,11 @@ use Symfony\Component\HttpFoundation\Request;
 class UserController extends Controller
 {
 
-
+    public function createListQueryBuilder()
+    {
+        return $this->createQueryBuilder('sub_family')
+            ->orderBy('sub_family.name', 'ASC');
+    }
 
 
 }

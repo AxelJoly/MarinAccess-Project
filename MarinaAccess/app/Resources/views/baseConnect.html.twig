@@ -42,12 +42,11 @@
 						<a href="#!email"><span class="white-text email">{{ user.mail }}</span></a>
 
 					</div></li>
-				<li><a href="{{ path('home') }}newTravelForm"><i class="material-icons">library_add</i>Add Travel</a></li>
+				<li><a href="{{ path('home') }}registerBoat"><i class="material-icons">library_add</i>Declarer un bateau</a></li>
 				<li><a class="waves-effect " href="{{ path('app.logout') }}"><i class="material-icons">power_settings_new</i>Disconnect</a></li>
-
-
+                {% if user.emplacement is null %}
                   <li><a class="waves-effect " href="{{ path('home') }}mooring"><i class="material-icons">settings</i>Déclarer un emplacement</a></li>
-
+                {% endif %}
                 {% if user.roles == ["ROLE_ADMIN"] %}
 					<li><a class="subheader">Administration</a></li>
 				<li><a href="{{ path('home') }}admin"><i class="material-icons">settings</i>Panneau d'administration</a></li>

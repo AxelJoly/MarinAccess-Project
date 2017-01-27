@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Forms\ConfirmTravelType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,7 +37,7 @@ class SeatController extends Controller
         $seat = $this->getDoctrine()->getRepository('AppBundle:Mooring')->findAll();
         $date = new \DateTime();
 
-
+        dump($user);
         $em = $this->getDoctrine()->getManager();
 
         for($i = 0; $i < count($seat); $i++){
@@ -60,11 +61,13 @@ class SeatController extends Controller
         return $this->render('AppBundle:Travel:travel.html.twig', array('user' => $user, 'travel' => $mooring));
     }
 
+
+
     /**
      * @Route("/confirm/{id}", name="confirm")
      *
      */
-    public function confirmAction($id)
+    public function confirmAction( $id)
     {
         if( $this->container->get( 'security.authorization_checker' )->isGranted( 'IS_AUTHENTICATED_FULLY' ) )
         {
@@ -73,7 +76,8 @@ class SeatController extends Controller
         }
 
         $mooring = $this->getDoctrine()->getRepository('AppBundle:Mooring')->find($id);
-        return $this->render('AppBundle:Travel:confirm.html.twig', array('user' => $user, 'mooring' => $mooring));
+
+        return $this->render('AppBundle:Travel:confirm.html.twig', array('user' => $user, 'mooring' => $mooring, ));
     }
 
     /**
@@ -88,6 +92,7 @@ class SeatController extends Controller
 
         }
         $em = $this->getDoctrine()->getManager();
+
         $mooring = $this->getDoctrine()->getRepository('AppBundle:Mooring')->find($id);
         $query = $em->createQuery('SELECT bateau FROM AppBundle\Entity\Boat bateau WHERE bateau.capitaine = :capitaine');
         $query->setParameters(array(

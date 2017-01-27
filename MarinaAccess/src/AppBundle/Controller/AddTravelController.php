@@ -18,10 +18,10 @@ use AppBundle\Entity\Mooring;
 class AddTravelController extends Controller
 {
     /**
-     * @Route("/newTravelForm", name = "newTravelForm")
+     * @Route("/newTravelForm/{id}", name = "newTravelForm")
      */
 
-    public function createTravelFormAction(Request $request)
+    public function createTravelFormAction(Request $request, $id)
     {
 
 
@@ -37,15 +37,9 @@ class AddTravelController extends Controller
         $check = $query->getResult();
 
 */
+        $mooring = $this->getDoctrine()->getRepository('AppBundle:Mooring')->find($id);
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery('SELECT mooring FROM AppBundle\Entity\Mooring mooring WHERE mooring.place = :place');
-        $query->setParameters(array(
-            'place' => $user->getEmplacement(),
-        ));
-        $check = $query->getResult();
-        dump($check);
 
-        $mooring = $check[0];
 
         $form = $this->createForm(addTravelType::class, $mooring);
 

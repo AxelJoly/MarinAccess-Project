@@ -81,13 +81,11 @@ class AdminController extends Controller
     public function deleteAction($mail)
     {
 
-        if( $this->container->get( 'security.authorization_checker' )->isGranted( 'IS_AUTHENTICATED_FULLY' ) )
-        {
+        if ($this->container->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
 
         }
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
-
 
 
         $userToDelete = $this->getDoctrine()->getRepository('AppBundle:User')->find($mail);
@@ -100,11 +98,13 @@ class AdminController extends Controller
 
         dump($check);
         $em = $this->getDoctrine()->getManager();
-        $mooring = $check[0];
+
+        if ($check != null)
+        {    $mooring = $check[0];
         $mooring->setProprietaire(null);
         $mooring->setBateauAmarre(null);
         $em->persist($mooring);
-
+    }
         $em->remove($userToDelete);
         $em->flush();
 

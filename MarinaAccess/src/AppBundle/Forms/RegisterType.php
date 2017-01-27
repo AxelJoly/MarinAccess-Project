@@ -31,7 +31,7 @@ class RegisterType extends AbstractType
 
         $builder
             ->add('mail',EmailType::class, array(
-               'label' => 'Email ',
+                'label' => 'Email ',
             ))
 
             ->add('mdp',PasswordType::class, array(
@@ -45,19 +45,20 @@ class RegisterType extends AbstractType
             ))
             ->add('numPermis',TextType::class, array(
                 'label' => 'Numéro de permis',
+                'attr' => ['placeholder' => 'Attention ! Toute fraude pourra entrainer des poursuites judiciaires.'],
             ))
             ->add('nationalite',TextType::class, array(
                 'label' => 'Nationalité',
             ))
             ->add('numUrgence', TextType::class, array(
                 'label' => "Numéro d'urgence",
+                'attr' => ['pattern' => '^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$'],
             ))
-
             ->add('photo',  TextType::class, array(
-            		'required' => false, 'label' => 'Photo de profil (URL) ',
+                 'label' => 'Photo de profil (URL) ',
+                'attr' => ['placeholder' => 'Veuillez renseigner une photo d\'identité.']
 
 
-            		
             ))
             ->add('save', SubmitType::class, array(
             		'attr' => ['class' => 'btn waves-effect waves-light blue lighten-1 center-align ']
