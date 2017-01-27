@@ -11,10 +11,15 @@
         <div class="col s3 row">
         </div>
     </div>
+<div class="container">
+    Les places occupés:
+    {% for items in mooring %}
+        {% if items.place is defined %}
 
-
-
-
+          {{ items.place.numPlace }},
+            {% endif %}
+        {% endfor %}
+</div>
     {{ form_start(form, { 'attr': {'class': 'container'}}) }}
 
 

@@ -8,6 +8,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\AppBundle;
 use AppBundle\Forms\ConfirmTravelType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -121,6 +122,7 @@ class SeatController extends Controller
             $user = $this->container->get('security.token_storage')->getToken()->getUser();
 
         }
+        $allMooring =  $this->getDoctrine()->getRepository('AppBundle:Mooring')->findAll();
         $em = $this->getDoctrine()->getManager();
         $mooring = new Mooring();
 
@@ -137,6 +139,6 @@ class SeatController extends Controller
             $em->flush();
             return $this->redirectToRoute('home');
         }
-        return $this->render('AppBundle:Travel:mooringModify.html.twig', array('user' => $user, 'form' => $form->createView()));
+        return $this->render('AppBundle:Travel:mooringModify.html.twig', array('user' => $user, 'form' => $form->createView(), 'mooring' => $allMooring));
     }
 }
